@@ -12,5 +12,5 @@ public class IPLTest {
         IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
         Assert.assertEquals(83.2, censusCSV[0].avg,0);
     }
-
+    //@Test
 }
