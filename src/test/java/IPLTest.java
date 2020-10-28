@@ -12,5 +12,11 @@ public class IPLTest {
         IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
         Assert.assertEquals(83.2, censusCSV[0].avg,0);
     }
-    //@Test
+    @Test
+    public void givenIPLDataFindHighestStrikeRate() throws IPLAnalyserException {
+        IPLAnalyser iplAnalyser=new IPLAnalyser();
+        String sorted=iplAnalyser.topStrikeRate(IPL_MOST_RUNS);
+        IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
+        Assert.assertEquals(333.33, censusCSV[0].sr,0);
+    }
 }
