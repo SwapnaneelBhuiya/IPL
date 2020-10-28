@@ -10,23 +10,23 @@ public class IPLTest {
         IPLAnalyser iplAnalyser=new IPLAnalyser();
         String sorted=iplAnalyser.topBattingAverage(IPL_MOST_RUNS);
         IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
-        Assert.assertEquals(83.2, censusCSV[0].avg,0);
+        Assert.assertEquals("MS Dhoni", censusCSV[0].player);
     }
     @Test
     public void givenIPLDataFindHighestStrikeRate() throws IPLAnalyserException {
         IPLAnalyser iplAnalyser=new IPLAnalyser();
         String sorted=iplAnalyser.topStrikeRate(IPL_MOST_RUNS);
         IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
-        Assert.assertEquals(333.33, censusCSV[0].sr,0);
+        Assert.assertEquals("Ishant Sharma", censusCSV[0].player);
     }
     @Test
     public void givenIPLDatafindMax6sAnd4s() throws IPLAnalyserException {
         IPLAnalyser iplAnalyser=new IPLAnalyser();
         String sorted=iplAnalyser.maxSixes(IPL_MOST_RUNS);
         IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
-        Assert.assertEquals(52, censusCSV[0].sixes,0);
+        Assert.assertEquals("Andre Russell", censusCSV[0].player);
         sorted=iplAnalyser.maxFours(IPL_MOST_RUNS);
         censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
-        Assert.assertEquals(64, censusCSV[0].fours,0);
+        Assert.assertEquals("Shikhar Dhawan", censusCSV[0].player);
     }
 }
