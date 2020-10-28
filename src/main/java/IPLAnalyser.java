@@ -53,6 +53,26 @@ public class IPLAnalyser {
         String sortedStateCensusJson = new Gson().toJson(this.csvFileList);
         return sortedStateCensusJson;
     }
+    public String maxSixes(String filePath) throws IPLAnalyserException {
+        loadIPLdata(filePath);
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IPLMostRuns> censusComparator= Comparator.comparing(census->census.sixes);
+        this.sort(censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.csvFileList);
+        return sortedStateCensusJson;
+    }
+    public String maxFours(String filePath) throws IPLAnalyserException {
+        loadIPLdata(filePath);
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IPLMostRuns> censusComparator= Comparator.comparing(census->census.fours);
+        this.sort(censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.csvFileList);
+        return sortedStateCensusJson;
+    }
     private void sort(Comparator<IPLMostRuns> censusComparator) {
         for (int i = 0; i < csvFileList.size(); i++) {
             for (int j = 0; j < csvFileList.size() - i - 1; j++) {

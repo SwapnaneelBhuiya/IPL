@@ -19,4 +19,14 @@ public class IPLTest {
         IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
         Assert.assertEquals(333.33, censusCSV[0].sr,0);
     }
+    @Test
+    public void givenIPLDatafindMax6sAnd4s() throws IPLAnalyserException {
+        IPLAnalyser iplAnalyser=new IPLAnalyser();
+        String sorted=iplAnalyser.maxSixes(IPL_MOST_RUNS);
+        IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
+        Assert.assertEquals(52, censusCSV[0].sixes,0);
+        sorted=iplAnalyser.maxFours(IPL_MOST_RUNS);
+        censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
+        Assert.assertEquals(64, censusCSV[0].fours,0);
+    }
 }
