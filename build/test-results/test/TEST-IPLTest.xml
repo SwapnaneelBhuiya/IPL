@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="IPLTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-28T10:17:08" hostname="swapnaneels-MacBook-Air.local" time="1.299">
+<testsuite name="IPLTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-31T14:10:05" hostname="Swapnaneels-MacBook-Air.local" time="0.725">
   <properties/>
-  <testcase name="givenIPLDatafindMax6sAnd4s" classname="IPLTest" time="1.299"/>
+  <testcase name="givenIPLDataFindMax6sAnd4s" classname="IPLTest" time="0.725"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -20,13 +20,10 @@ public class IPLTest {
         Assert.assertEquals("Ishant Sharma", censusCSV[0].player);
     }
     @Test
-    public void givenIPLDatafindMax6sAnd4s() throws IPLAnalyserException {
+    public void givenIPLDataFindMax6sAnd4s() throws IPLAnalyserException {
         IPLAnalyser iplAnalyser=new IPLAnalyser();
-        String sorted=iplAnalyser.maxSixes(IPL_MOST_RUNS);
+        String sorted=iplAnalyser.maxFoursAndSixes(IPL_MOST_RUNS);
         IPLMostRuns[] censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
         Assert.assertEquals("Andre Russell", censusCSV[0].player);
-        sorted=iplAnalyser.maxFours(IPL_MOST_RUNS);
-        censusCSV=new Gson().fromJson(sorted, IPLMostRuns[].class);
-        Assert.assertEquals("Shikhar Dhawan", censusCSV[0].player);
     }
 }
