@@ -76,4 +76,17 @@ public class IPLAnalyser {
             }
         }
     }
+
+    public String getPlayersWithTopSRandBoundary(String filePath) throws IPLAnalyserException {
+        loadIPLdata(filePath);
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IPLMostRuns> censusComparator= Comparator.comparing(IPLMostRuns::getSixes)
+                                                            .thenComparing(census->census.fours)
+                                                            .thenComparing(census->census.sr);
+        this.sort(censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.csvFileList);
+        return sortedStateCensusJson;
+    }
 }
