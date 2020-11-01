@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.opencsv.bean.CsvToBean;
+import org.junit.Assert;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -254,5 +255,50 @@ public class IPLAnalyser {
         this.sort(censusComparator);
         String sortedStateCensusJson = new Gson().toJson(this.IPLFileList);
         return sortedStateCensusJson;
+    }
+
+    public String findThePlayer(IPLWickets[] wickets, IPLMostRuns[] average) {
+        for(int i=0;i<average.length;i++)
+        {
+            if(average[i].player.equals(wickets[13+i].player))
+            {
+                return average[i].player;
+            }
+        }
+        return "not found";
+    }
+
+    public String getPlayerWithWickets(IPLWickets[] wickets, IPLMostRuns[] runs) {
+        for(int i=0;i<runs.length;i++)
+        {
+            for(int j=wickets.length-1;j>=0;j--)
+                if(runs[i].player.equals(wickets[j].player))
+                {
+                    return runs[i].player;
+                }
+        }
+        return "not found";
+    }
+
+    public String getPlayer(IPLMostRuns[] runs, IPLMostRuns[] average) {
+        for(int i=0;i<runs.length;i++)
+        {
+            if(runs[i].player.equals(average[i].player))
+            {
+                return runs[i].player;
+            }
+        }
+        return "not found";
+    }
+
+    public String findPlayerWithMaxAverage(IPLMostRuns[] runs, IPLMostRuns[] average) {
+        for(int i=0;i<runs.length;i++)
+        {
+            if(runs[runs.length-1-i].player.equals(average[i].player))
+            {
+                return runs[runs.length-1-i].player;
+            }
+        }
+        return "not found";
     }
 }

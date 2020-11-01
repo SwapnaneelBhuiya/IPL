@@ -96,14 +96,8 @@ public class IPLTest {
         IPLWickets[] wickets=new Gson().fromJson(sorted, IPLWickets[].class);
         String sortedBat=iplAnalyser.getBatsmanWithMaxAverage((IPL_MOST_RUNS));
         IPLMostRuns[] average=new Gson().fromJson(sortedBat, IPLMostRuns[].class);
-        for(int i=0;i<average.length;i++)
-        {
-            if(average[i].player.equals(wickets[13+i].player))
-            {
-                Assert.assertEquals("Sherfane Rutherford", average[i].player);
-                break;
-            }
-        }
+        String name=iplAnalyser.findThePlayer(wickets,average);
+        Assert.assertEquals("Sherfane Rutherford", name);
     }
     @Test
     public void givenIPLDataFindBestAllRounders() throws IPLAnalyserException {
@@ -112,19 +106,9 @@ public class IPLTest {
         IPLWickets[] wickets=new Gson().fromJson(sorted, IPLWickets[].class);
         String sortedBat=iplAnalyser.getPlayerWithTopRuns((IPL_MOST_RUNS));
         IPLMostRuns[] runs=new Gson().fromJson(sortedBat, IPLMostRuns[].class);
-        int c=0;
-        for(int i=0;i<runs.length;i++)
-        {
-            for(int j=wickets.length-1;j>=0;j--)
-                if(runs[i].player.equals(wickets[j].player))
-                {
-                    Assert.assertEquals("Andre Russell", runs[i].player);
-                    c=1;
-                    break;
-                }
-            if(c==1)
-                break;
-        }
+        String name=iplAnalyser.getPlayerWithWickets(wickets,runs);
+        Assert.assertEquals("Andre Russell", name);
+
     }
     @Test
     public void givenIPLDataFindBatsmanWithMaximumAverageAndHundreds() throws IPLAnalyserException {
@@ -133,14 +117,8 @@ public class IPLTest {
         IPLMostRuns[] runs=new Gson().fromJson(sorted, IPLMostRuns[].class);
         String sortedBat=iplAnalyser.getBatsmanWithMaxAverage((IPL_MOST_RUNS));
         IPLMostRuns[] average=new Gson().fromJson(sortedBat, IPLMostRuns[].class);
-        for(int i=0;i<runs.length;i++)
-        {
-            if(runs[i].player.equals(average[i].player))
-            {
-                Assert.assertEquals("Jos Buttler", average[i].player);
-                break;
-            }
-        }
+        String name=iplAnalyser.getPlayer(runs,average);
+        Assert.assertEquals("Jos Buttler", name);
     }
     @Test
     public void givenIPLDataFindBatsmanWithZeroMilestonesButWithBestAverages() throws IPLAnalyserException {
@@ -149,13 +127,7 @@ public class IPLTest {
         IPLMostRuns[] runs=new Gson().fromJson(sorted, IPLMostRuns[].class);
         String sortedBat=iplAnalyser.getBatsmanWithMaxAverage((IPL_MOST_RUNS));
         IPLMostRuns[] average=new Gson().fromJson(sortedBat, IPLMostRuns[].class);
-        for(int i=0;i<runs.length;i++)
-        {
-            if(runs[runs.length-1-i].player.equals(average[i].player))
-            {
-                Assert.assertEquals("Robin Uthappa", average[i].player);
-                break;
-            }
-        }
+        String name=iplAnalyser.findPlayerWithMaxAverage(runs,average);
+        Assert.assertEquals("Robin Uthappa", name);
     }
 }
