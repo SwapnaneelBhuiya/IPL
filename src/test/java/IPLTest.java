@@ -52,7 +52,7 @@ public class IPLTest {
         IPLAnalyser iplAnalyser=new IPLAnalyser();
         String sorted=iplAnalyser.getPlayerWithTopBowlingAverage(IPL_MOST_WICKETS);
         IPLWickets[] censusCSV=new Gson().fromJson(sorted, IPLWickets[].class);
-        Assert.assertEquals("Shivam Dube", censusCSV[0].player);
+        Assert.assertEquals("Anukul Roy", censusCSV[13].player);
     }
     @Test
     public void givenIPLDataFindBowlerWithTopSR() throws IPLAnalyserException {
@@ -61,5 +61,11 @@ public class IPLTest {
         IPLWickets[] censusCSV=new Gson().fromJson(sorted, IPLWickets[].class);
         Assert.assertEquals("Alzarri Joseph", censusCSV[13].player);
     }
-
+    @Test
+    public void givenIPLDataFindBowlerWithBestEconomy() throws IPLAnalyserException {
+        IPLAnalyser iplAnalyser=new IPLAnalyser();
+        String sorted=iplAnalyser.getPlayerWithTopEconomy(IPL_MOST_WICKETS);
+        IPLWickets[] censusCSV=new Gson().fromJson(sorted, IPLWickets[].class);
+        Assert.assertEquals("Shivam Dube", censusCSV[0].player);
+    }
 }

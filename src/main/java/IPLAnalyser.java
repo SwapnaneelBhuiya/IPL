@@ -166,4 +166,15 @@ public class IPLAnalyser {
         String sortedStateCensusJson = new Gson().toJson(this.csvList);
         return sortedStateCensusJson;
     }
+
+    public String getPlayerWithTopEconomy(String filePath) throws IPLAnalyserException {
+        loadIPLBowlingData(filePath);
+        if (csvList == null || csvList.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IPLWickets> censusComparator= Comparator.comparing(census->census.economy);
+        this.sortWicket(censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.csvList);
+        return sortedStateCensusJson;
+    }
 }
