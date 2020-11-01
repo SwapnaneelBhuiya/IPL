@@ -105,4 +105,25 @@ public class IPLTest {
             }
         }
     }
+    @Test
+    public void givenIPLDataFindBestAllRounders() throws IPLAnalyserException {
+        IPLAnalyser iplAnalyser=new IPLAnalyser();
+        String sorted=iplAnalyser.getPlayerWithMaxWickets(IPL_MOST_WICKETS);
+        IPLWickets[] wickets=new Gson().fromJson(sorted, IPLWickets[].class);
+        String sortedBat=iplAnalyser.getPlayerWithTopRuns((IPL_MOST_RUNS));
+        IPLMostRuns[] runs=new Gson().fromJson(sortedBat, IPLMostRuns[].class);
+        int c=0;
+        for(int i=0;i<runs.length;i++)
+        {
+            for(int j=wickets.length-1;j>=0;j--)
+                if(runs[i].player.equals(wickets[j].player))
+                {
+                    Assert.assertEquals("Andre Russell", runs[i].player);
+                    c=1;
+                    break;
+                }
+            if(c==1)
+                break;
+        }
+    }
 }

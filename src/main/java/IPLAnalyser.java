@@ -222,4 +222,15 @@ public class IPLAnalyser {
         String sortedStateCensusJson = new Gson().toJson(this.csvFileList);
         return sortedStateCensusJson;
     }
+
+    public String getPlayerWithTopRuns(String filePath) throws IPLAnalyserException {
+        loadIPLdata(filePath);
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IPLMostRuns> censusComparator= Comparator.comparing(census->census.runs);
+        this.sort(censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.csvFileList);
+        return sortedStateCensusJson;
+    }
 }
