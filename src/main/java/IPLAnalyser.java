@@ -12,8 +12,10 @@ import java.util.List;
 
 public class IPLAnalyser {
     List<IPLMostRuns> csvFileList;
+    List<IPLWickets> csvList;
     public IPLAnalyser() {
         this.csvFileList = new ArrayList<IPLMostRuns>();
+        this.csvList=new ArrayList<IPLWickets>();
     }
     public int loadIPLdata(String csvFilePath) throws IPLAnalyserException {
         CsvToBean<IPLMostRuns> csvToBean;
@@ -24,6 +26,24 @@ public class IPLAnalyser {
                 this.csvFileList.add((censusCSVIterator.next()));
             }
             return csvFileList.size();
+        }
+        catch(IllegalStateException e) {
+            throw new IPLAnalyserException(e.getMessage(),
+                    IPLAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+        }catch (IOException|RuntimeException e) {
+            throw new IPLAnalyserException(e.getMessage(),
+                    IPLAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        }
+    }
+    public int loadIPLBowlingData(String csvFilePath) throws IPLAnalyserException {
+        CsvToBean<IPLWickets> csvToBean;
+        try (Reader reader= Files.newBufferedReader(Paths.get(csvFilePath));){
+            ICSVBuilder icsvBuilder= CSVBuilderFactory.createCSVBuilder();
+            Iterator<IPLWickets> censusCSVIterator = icsvBuilder.getCSVFileIterator(reader,  IPLWickets.class);
+            while (censusCSVIterator.hasNext()) {
+                this.csvList.add((censusCSVIterator.next()));
+            }
+            return csvList.size();
         }
         catch(IllegalStateException e) {
             throw new IPLAnalyserException(e.getMessage(),
@@ -76,6 +96,18 @@ public class IPLAnalyser {
             }
         }
     }
+    private void sortWicket(Comparator<IPLWickets> censusComparator) {
+        for (int i = 0; i < csvList.size(); i++) {
+            for (int j = 0; j < csvList.size() - i - 1; j++) {
+                IPLWickets census1 = csvList.get(j);
+                IPLWickets census2 = csvList.get(j + 1);
+                if (censusComparator.compare(census1, census2) > 0) {
+                    csvList.set(j, census2);
+                    csvList.set(j + 1, census1);
+                }
+            }
+        }
+    }
 
     public String getPlayersWithTopSRandBoundary(String filePath) throws IPLAnalyserException {
         loadIPLdata(filePath);
@@ -110,6 +142,17 @@ public class IPLAnalyser {
         Comparator<IPLMostRuns> censusComparator= Comparator.comparing(IPLMostRuns::getAvg).thenComparing(census->census.runs);
         this.sort(censusComparator);
         String sortedStateCensusJson = new Gson().toJson(this.csvFileList);
+        return sortedStateCensusJson;
+    }
+
+    public String getPlayerWithTopBowlingAverage(String filePath) throws IPLAnalyserException {
+        loadIPLBowlingData(filePath);
+        if (csvList == null || csvList.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IPLWickets> censusComparator= Comparator.comparing(census->census.avg);
+        this.sortWicket(censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.csvList);
         return sortedStateCensusJson;
     }
 }

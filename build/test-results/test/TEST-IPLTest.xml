@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="IPLTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-31T15:01:07" hostname="Swapnaneels-MacBook-Air.local" time="3.697">
+<testsuite name="IPLTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-11-01T07:25:58" hostname="Swapnaneels-MacBook-Air.local" time="0.356">
   <properties/>
-  <testcase name="givenIPLDataFindBastmanWithBestSR" classname="IPLTest" time="3.697"/>
+  <testcase name="givenIPLDataFindBowlerWithTopAverages" classname="IPLTest" time="0.356"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
