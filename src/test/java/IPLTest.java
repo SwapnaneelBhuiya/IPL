@@ -126,4 +126,21 @@ public class IPLTest {
                 break;
         }
     }
+    @Test
+    public void givenIPLDataFindBatsmanWithMaximumAverageAndHundreds() throws IPLAnalyserException {
+        IPLAnalyser iplAnalyser=new IPLAnalyser();
+        String sorted=iplAnalyser.getPlayerWithTopHundreds((IPL_MOST_RUNS));
+        IPLMostRuns[] runs=new Gson().fromJson(sorted, IPLMostRuns[].class);
+        String sortedBat=iplAnalyser.getBatsmanWithMaxAverage((IPL_MOST_RUNS));
+        IPLMostRuns[] average=new Gson().fromJson(sortedBat, IPLMostRuns[].class);
+        for(int i=0;i<runs.length;i++)
+        {
+            if(runs[i].player.equals(average[i].player))
+            {
+                Assert.assertEquals("Jos Buttler", average[i].player);
+                break;
+            }
+        }
+    }
+
 }
