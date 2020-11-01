@@ -89,5 +89,20 @@ public class IPLTest {
         IPLWickets[] censusCSV=new Gson().fromJson(sorted, IPLWickets[].class);
         Assert.assertEquals("Imran Tahir", censusCSV[censusCSV.length-1].player);
     }
-
+    @Test
+    public void givenIPLDataFindCricketerWithBestBowlingAndBattingAverage() throws IPLAnalyserException {
+        IPLAnalyser iplAnalyser=new IPLAnalyser();
+        String sorted=iplAnalyser.getPlayerWithTopBowlingAverage(IPL_MOST_WICKETS);
+        IPLWickets[] wickets=new Gson().fromJson(sorted, IPLWickets[].class);
+        String sortedBat=iplAnalyser.getBatsmanWithMaxAverage((IPL_MOST_RUNS));
+        IPLMostRuns[] average=new Gson().fromJson(sortedBat, IPLMostRuns[].class);
+        for(int i=0;i<average.length;i++)
+        {
+            if(average[i].player.equals(wickets[13+i].player))
+            {
+                Assert.assertEquals("Sherfane Rutherford", average[i].player);
+                break;
+            }
+        }
+    }
 }
