@@ -75,5 +75,12 @@ public class IPLTest {
         IPLWickets[] censusCSV=new Gson().fromJson(sorted, IPLWickets[].class);
         Assert.assertEquals("Alzarri Joseph", censusCSV[13].player);
     }
+    @Test
+    public void givenIPLDataFindBolwerWithBestSRandAverage() throws IPLAnalyserException {
+        IPLAnalyser iplAnalyser=new IPLAnalyser();
+        String sorted=iplAnalyser.getPlayerWithTopSRWAndAverage(IPL_MOST_WICKETS);
+        IPLWickets[] censusCSV=new Gson().fromJson(sorted, IPLWickets[].class);
+        Assert.assertEquals("Anukul Roy", censusCSV[13].player);
+    }
 
 }
