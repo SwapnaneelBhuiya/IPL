@@ -177,4 +177,16 @@ public class IPLAnalyser {
         String sortedStateCensusJson = new Gson().toJson(this.csvList);
         return sortedStateCensusJson;
     }
+
+    public String getPlayerWithTopSRWithWickets(String filePath) throws IPLAnalyserException {
+        loadIPLBowlingData(filePath);
+        if (csvList == null || csvList.size() == 0) {
+            throw new IPLAnalyserException("NO_CENSUS_DATA", IPLAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IPLWickets> censusComparator= Comparator.comparing(IPLWickets::getStrikeRate)
+                .thenComparing(census->census.fiveWicket).thenComparing(census->census.fourWicket);
+        this.sortWicket(censusComparator);
+        String sortedStateCensusJson = new Gson().toJson(this.csvList);
+        return sortedStateCensusJson;
+    }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="IPLTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-11-01T07:44:06" hostname="Swapnaneels-MacBook-Air.local" time="0.22">
+<testsuite name="IPLTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-11-01T07:50:18" hostname="Swapnaneels-MacBook-Air.local" time="0.931">
   <properties/>
-  <testcase name="givenIPLDataFindBowlerWithBestEconomy" classname="IPLTest" time="0.22">
-    <failure message="org.junit.ComparisonFailure: expected:&lt;[Alzarri Joseph]&gt; but was:&lt;[Shivam Dube]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[Alzarri Joseph]&gt; but was:&lt;[Shivam Dube]&gt;
+  <testcase name="givenIPLDataFindBowlerWithBestSRWith5wAnd4w" classname="IPLTest" time="0.931">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[Shivam Dube]&gt; but was:&lt;[Alzarri Joseph]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[Shivam Dube]&gt; but was:&lt;[Alzarri Joseph]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at org.junit.Assert.assertEquals(Assert.java:144)
-	at IPLTest.givenIPLDataFindBowlerWithBestEconomy(IPLTest.java:69)
+	at IPLTest.givenIPLDataFindBowlerWithBestSRWith5wAnd4w(IPLTest.java:76)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
